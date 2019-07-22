@@ -19,6 +19,12 @@ docker-compose -f docker-compose.prod.yml up --build
 **Note**: It does not include a static file server or a WSGI server such as nginx (yet) + gunicorn, nor are secrets such as DB passwords kept properly. Therefore, it is not actually suitable for production yet.
 
 To run test suite excluding migrations:
+Make sure the containers are running:
+```
+docker-compose -f docker-compose.dev.yml up -d
+```
+
+Then run:
 ```
 docker-compose -f docker-compose.dev.yml exec web coverage run --source=app --omit=*/migrations/*  manage.py test -v 2
 ```
