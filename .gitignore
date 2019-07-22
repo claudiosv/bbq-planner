@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+*.db
+.DS_Store
+.idea
+venv
+env
+__pycache__
+.venv
+.cache
+postgres_data/
