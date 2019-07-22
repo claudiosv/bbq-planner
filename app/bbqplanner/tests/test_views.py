@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils.dateparse import parse_datetime
 from bbqplanner.models import Event
 
+
 class TestCreateEventView(TestCase):
     def setUp(self):
         self.client = Client()
@@ -53,6 +54,7 @@ class TestRegisterEventView(TestCase):
         self.event = Event.objects.create(
             organizer=test_user1, name="Test event", event_date=event_datetime
         )
+
     def test_event_registration(self):
         url = reverse("bbqplanner:register-event", args=[self.event.pk])
 
@@ -90,7 +92,7 @@ class TestEventsListView(TestCase):
         test_user1 = User.objects.create_user(
             username="testuser1", password="1X<IRoAmUkw+tuK"
         )
-  
+
     def test_redirect_events_list(self):
         url = reverse("bbqplanner:events")
 

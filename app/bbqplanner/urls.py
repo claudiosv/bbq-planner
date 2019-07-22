@@ -21,7 +21,8 @@ urlpatterns = [
     # View event overview, link to be shared and direct people to register
     path("event/<int:pk>/", EventOverviewView.as_view(), name="event-overview"),
     # Register for event form
-    path("event/<int:pk>/register", RegisterEventView.as_view(), name="register-event"),
+    path("event/<int:pk>/register",
+         RegisterEventView.as_view(), name="register-event"),
     # View event details from, including shopping list
     path("event/<int:pk>/details", EventDetailView.as_view(), name="event-details"),
     # View overview of all events

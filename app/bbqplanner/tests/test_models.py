@@ -20,7 +20,8 @@ class EventTestCase(TestCase):
         meat_options = ["Pork", "Steak", "Lamb", "Sausage"]
         self.meat_types = []
         for meat_option in meat_options:
-            meat_type = MeatType.objects.create(event=self.event, name=meat_option)
+            meat_type = MeatType.objects.create(
+                event=self.event, name=meat_option)
             self.meat_types.append(meat_type)
 
         visitor_1 = "Test Visitor #1"
@@ -80,4 +81,5 @@ class EventTestCase(TestCase):
         self.assertEqual(str(self.visitor_2_obj), "Test Visitor #2")
 
     def test_get_meat_choice_name(self):
-        self.assertEqual(str(self.visitor_meat_choice_1), "Test Visitor #1 Pork")
+        self.assertEqual(str(self.visitor_meat_choice_1),
+                         "Test Visitor #1 Pork")
