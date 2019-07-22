@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  web:
+    restart: always
+    build:
+      context: ./app
+      dockerfile: Dockerfile-prod
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    environment: # Warning: You must setup a server for static files
+      - DEBUG=0
+      - SECRET_KEY=MmbaFoVn1ydDZPMEaBgb
+      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=hello_django_dev
+      - SQL_USER=hello_django
+      - SQL_PASSWORD=hello_django
+      - SQL_HOST=db
+      - SQL_PORT=5432
+      - DATABASE=postgres
+    depends_on:
+      - db
+  db:
+    restart: always
+    image: postgres:11.2-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=hello_django
+      - POSTGRES_PASSWORD=hello_django
+      - POSTGRES_DB=hello_django_dev
+volumes:
+  postgres_data:
