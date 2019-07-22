@@ -1,0 +1,82 @@
+{% extends "bbqplanner/base.html" %}
+{% block title %}BBQ Planner | Events Overview{% endblock %}
+{% block content %}
+
+<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="">
+      <h1>🍖</h1>
+      BBQ Planner
+    </a>
+  </div>
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a href="{% url 'bbqplanner:create-event' %}" class="button is-light">
+            Create event
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-mobile">
+      <div class="column is-12">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+          <ul>
+            <li><a href="#">BBQ Planner</a></li>
+            <li class="is-active"><a href="#">Events</a></li>
+          </ul>
+        </nav>
+        {% if events %}
+        <table class="table is-striped is-fullwidth is-hoverable">
+          <thead>
+            <tr>
+              <th>Event Name</th>
+              <th>Event Date</th>
+              <th>Number of Guests</th>
+              <th>Share</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for event in events %}
+            <tr>
+              <td>{{ event.name }}</td>
+              <td>{{ event.event_date }}</td>
+              <td>{{ event.visitor_total_count }}</td>
+              <td>
+                <div class="field">
+                  <div class="control">
+                    <input
+                      class="input is-small"
+                      type="text"
+                      value="http://localhost:8000/event/{{ event.id }}"
+                    />
+                  </div>
+                </div>
+              </td>
+              <td>
+                <a
+                  href="{% url 'bbqplanner:event-details' event.id %}"
+                  class="button is-light"
+                  >View Report</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+{% else %}
+<p>No events are planned.</p>
+{% endif %}
+{% endblock %}

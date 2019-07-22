@@ -1,0 +1,79 @@
+{% extends "bbqplanner/base.html" %} 
+{% block title %}BBQ Planner | Create Event{% endblock %}
+{% block content %}
+<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="">
+      <h1>🍖</h1>
+      BBQ Planner
+    </a>
+  </div>
+</nav>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-mobile">
+      <div class="column is-6">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="field">
+            <label class="label">Event Name</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                name="name"
+                placeholder="Event name"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Event Date</label>
+            <div class="control">
+              <input
+                class="input"
+                name="date"
+                type="date"
+                placeholder="Event Date"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Event Time</label>
+            <div class="control">
+              <input
+                class="input"
+                name="time"
+                type="time"
+                placeholder="Event Time"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Meats Served</label>
+            <div class="control">
+              <input
+                class="input"
+                name="meats"
+                type="text"
+                placeholder="Steak, pork"
+              />
+            </div>
+            <p class="help">
+              Please enter a comma separated list of meats you will serve.
+            </p>
+          </div>
+
+          <button class="button is-block is-info">Create event</button>
+          <p class="help">
+            Please note, once an event is created, it cannot be edited or
+            cancelled.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

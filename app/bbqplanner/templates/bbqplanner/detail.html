@@ -1,0 +1,83 @@
+{% extends "bbqplanner/base.html" %}
+{% block title %}BBQ Planner | Event Details{% endblock %}
+{% block content %}
+<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="">
+      <h1>🍖</h1>
+      BBQ Planner
+    </a>
+  </div>
+</nav>
+
+{% if error_message %}
+<p>
+  <strong>{{ error_message }}</strong>
+</p>
+{% endif %}
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-12">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+          <ul>
+            <li><a href="#">BBQ Planner</a></li>
+            <li><a href="{% url 'bbqplanner:events' %}">Events</a></li>
+            <li class="is-active">
+              <a href="#" aria-current="page">{{ event.name }} Details</a>
+            </li>
+          </ul>
+        </nav>
+        <h1 class="title is-1">{{ event.name }}</h1>
+        <h3 class="subtitle is-3">
+          Total visitor count: {{ event.visitor_total_count }} visitor{{ event.visitor_total_count | pluralize }}
+        </h3>
+        <div class="columns">
+          <div class="column is-6">
+            <table class="table is-striped is-fullwidth is-hoverable">
+              <thead>
+                <tr>
+                  <th>Visitor Name</th>
+                  <th>Number of Guests</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for visitor in event.visitors %}
+                <tr>
+                  <td>{{ visitor.name }}</td>
+                  <td>{{ visitor.guest_count }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% if not event.visitors %}
+            <p>No visitor registered yet.</p>
+            {% endif %}
+          </div>
+          <div class="column is-6">
+            <table class="table is-striped is-fullwidth is-hoverable">
+              <thead>
+                <tr>
+                  <th>Meat Name</th>
+                  <th>Number of Pieces</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for choice,count in event.meat_choices.items %}
+                <tr>
+                  <td>{{ choice }}</td>
+                  <td>{{ count }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% if not event.meat_choices %}
+            <p>No meat options were added.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

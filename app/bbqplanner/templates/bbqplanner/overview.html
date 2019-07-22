@@ -1,0 +1,23 @@
+{% extends "bbqplanner/base.html" %}
+{% block title %}BBQ Planner | Event Overview{% endblock %}
+{% block content %}
+<section class="hero is-fullheight bg-img">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-6 is-offset-3">
+        <div class="box">
+          <h1 class="title">{{ event.name }}</h1>
+          <h2 class="subtitle">
+            on {{ event.event_date|date:"D d M Y" }} at
+            {{ event.event_date|time:"H:i" }}
+          </h2>
+          <a
+            href="{% url 'bbqplanner:register-event' event.id %}"
+            class="button is-primary is-large is-fullwidth"
+            >Register</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

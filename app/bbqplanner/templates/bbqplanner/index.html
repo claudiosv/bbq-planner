@@ -1,0 +1,69 @@
+{% extends "bbqplanner/base.html" %}
+{% block title %}BBQ Planner{% endblock %}
+{% block content %}
+<nav
+  class="navbar is-transparent"
+  role="navigation"
+  aria-label="main navigation"
+>
+  <div class="navbar-brand">
+    <a class="navbar-item">
+      <h1>🍖</h1>
+      BBQ Planner
+    </a>
+  </div>
+
+  <div class="navbar-menu">
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a href="{% url 'bbqplanner:register' %}" class="button is-primary">
+            <strong>Sign up</strong>
+          </a>
+          <a href="{% url 'bbqplanner:login' %}" class="button is-light">
+            Log in
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<section class="hero bg-img is-success is-fullheight-with-navbar">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-four-fifths">
+          <h1 class="title">
+            Plan your BBQs easily and efficiently 🍖
+          </h1>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-half">
+          <h2 class="subtitle">
+            BBQ Planner helps you organize your BBQs with ease. Create an event,
+            invite your friends & colleagues, and get shopping list so you know
+            exactly how much to buy
+          </h2>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <a href="/register" class="button is-primary is-large"
+            >Get started now 🎯</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-foot">
+    <div class="container is-boxed is-fullwidth">
+      <div class="content has-text-centered has-text-white">
+        <p>
+          Built with ❤️ by Claudio Spiess. Photo by Tuân Nguyễn Minh on Unsplash
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

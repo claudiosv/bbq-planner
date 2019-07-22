@@ -1,0 +1,64 @@
+{% extends "bbqplanner/base.html" %}
+{% block title %}BBQ Planner | Register for Event{% endblock %}
+{% block content %}
+<section class="hero is-fullheight bg-img">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-6 is-offset-3">
+        <div class="box">
+          <h3 class="title has-text-grey">{{ event }}</h3>
+          <form method="POST">
+            {% csrf_token %}
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-large"
+                  name="name"
+                  type="text"
+                  placeholder="Your Name"
+                  autofocus=""
+                />
+              </div>
+            </div>
+
+            Number of guests
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-large"
+                  name="number"
+                  type="number"
+                  placeholder="Guests"
+                />
+              </div>
+            </div>
+
+            Please enter the amount of each meat you want. Account for your
+            guests!
+            
+            {% for meat in visitors %}
+            <div class="field">
+              <div class="control">
+                {{ meat.name }}:
+                <input
+                  class="input is-large"
+                  name="meat-{{ meat.id }}"
+                  type="number"
+                  placeholder="0"
+                />
+              </div>
+            </div>
+            {% endfor %}
+            
+            Please note, once you register for an event, you cannot
+            change your preferences/guest count.
+            <button class="button is-block is-info is-large is-fullwidth">
+              Register
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

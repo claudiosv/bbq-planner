@@ -1,0 +1,85 @@
+{% extends "bbqplanner/base.html" %}
+{% block title %}BBQ Planner | Register{% endblock %}
+{% block content %}
+<section class="hero is-success is-fullheight bg-img">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-4 is-offset-4">
+        <div class="box">
+          <h3 class="title has-text-grey">BBQ Planner</h3>
+          <p class="subtitle has-text-grey">Please register to proceed.</p>
+          {% if messages %}
+          {% for message in messages %}
+          <div class="notification is-danger">
+            {{ message }}
+          </div>
+          {% endfor %}
+          {% endif %}
+          
+          <form method="POST">
+            {% csrf_token %}
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-large"
+                  name="firstName"
+                  type="text"
+                  placeholder="Your First Name"
+                  autofocus=""
+                />
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-large"
+                  name="lastName"
+                  type="text"
+                  placeholder="Your Last Name"
+                  autofocus=""
+                />
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-large"
+                  name="username"
+                  type="text"
+                  placeholder="Your Username"
+                  autofocus=""
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-large"
+                  name="password"
+                  type="password"
+                  placeholder="Your Password"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-large"
+                  name="passwordConfirmation"
+                  type="password"
+                  placeholder="Confirm Your Password"
+                />
+              </div>
+            </div>
+
+            <button class="button is-block is-info is-large is-fullwidth">
+              Register
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
